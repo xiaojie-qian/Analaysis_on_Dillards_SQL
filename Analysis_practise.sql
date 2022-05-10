@@ -1,3 +1,16 @@
+-- How many states within the United States are Dillard’s stores located? 
+SELECT DISTINCT state 
+FROM strinfo; 
+-- 31
+
+--What was the date of the earliest sale in the database where the sale price of the item did not equal the original price of the item, and what was the largest margin (original price minus sale price) of an item sold on that earliest date?
+SELECT TOP 100 orgprice, sprice, orgprice-sprice AS margin, saledate
+FROM trnsact
+WHERE orgprice<>sprice
+ORDER BY saledate ASC, margin DESC
+--04/08/01, $510.00
+
+
 --On which day was Dillard’s income based on total sum of purchases the greatest
 SELECT TOP 10 saledate, sum(amt) AS total_Sale
 FROM TRNSACT 
