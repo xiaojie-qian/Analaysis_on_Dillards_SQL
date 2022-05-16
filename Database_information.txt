@@ -1,0 +1,110 @@
+# Database: ua_dillards
+
+# Tables (5 tables)
+   Table     Abbr.                    PK/FK
+1. STRINFO    st                store(char)
+2. DEPTINFO   d       dept(int)
+3. SKSTINFO   sks               store(int)   sku(int)  
+4. SKUINFO    sku     dept(int)              sku(int)
+5. TRNSACT    t                 store(int)   sku(int)   register  trannum
+
+# Notes: 
+1. sks: cost can be 0 
+2. sampling the prices: sprice = amt , retail can be smaller than cost 
+cost       retail        orgprice     sprice     amt
+2.10        6.00            6.50        5.00    5.00
+5.00        3.75            15.00       12.75   12.75
+18.21       12.25           49.00       49.00   49.00
+5.88        14.00           14.00       10.50   10.50
+5.00        12.50           12.50       12.50   12.50
+
+
+
+## Table_1: STRINFO
+store  char  PK not null
+city   char
+state  char 
+zip    char
+
+### Sample
+store       city                  state     zip
+5502        WEST PALM BEACH         FL      33401
+7404        NEWPORT NEWS            VA      23602
+200         VALDOSTA                GA      31601
+3402        GAINESVILLE             FL      32605
+4903        MOLINE                  IL      61265
+
+
+## Table_2: DEPTINFO
+dept      int   PK  not null
+deptdesc  char
+
+### Sample 
+dept   deptdesc
+5207H  SIERR
+1301   BE2
+1100   GARY F
+5102   P&Y
+3103   COP
+
+
+## Table_3: SKSTINFO
+sku     int      PK    not null
+store   int      PK    not null
+cost    decimal
+retail  decimal
+
+### Sample 
+sku            store       cost          retail 
+9609549        7104        20.15         54.00
+4327541        103          0.00         0.00
+5427635        8402        21.00         22.50
+4284277        2707        25.00         24.75
+5858426        9103        38.71         14.99
+
+
+## Table_4: SKUINFO
+sku       int   PK   not null
+dept      int        not null
+classID   char 
+upc       char
+style     char
+color     char
+size      char
+packsize  int
+vendor    char
+brand     char
+
+### Sample 
+sku      dept classID   upc             style     color     size   packsize vendor  brand
+1107852   9105  114  000400007852110  14 S34101   RED        5X       1    6216218  BIG DADD
+917840    8306  242  000400007840091  40 C82884   TURQUOISE  020M     1    0014353  M I A
+3084585   6006  215  000400004585308  815N09      BLACK LEAT 080N     1    0060904  BROWN SH
+8522808   6006  614  000400002808852  845N50      BLACK LEA  080M     1    0060904  BROWN SH
+1427985   4303  005  000400007985142  -25B CT5051 CHOC PINK  S        1    4616219  TRIXXI C
+
+
+## Table_5: TRNSACT
+sku        int     PK     Not null 
+store      int     PK     NOT NULL
+register   int     PK     NOT NULL
+trannum    char    PK     NOT NULL
+interID    char
+saledate   date FORMAT 'YYYY-MM-DD'   PK  NOT NULL
+stype      char
+quantity   int    
+orgprice   decimal    
+sprice     decimal   
+amt        decimal  
+seq        char     PK   NOT NULL,
+mic        char   
+
+### Sample 
+sku     store register trannum   interID   saledate stype quantity orgprice sprice  amt     seq       mic
+9236636  6704  360      03600   209406000  05/03/10  P       1      12.00   3.00    3.00   915000041  021
+6963348  4303  830      01100   580407399  05/03/09  R       1      35.00   8.75    8.75   060800014  631
+616357   8407  720      00200   000000000  04/09/08  P       1      20.00   20.00   20.00  498600073  731
+8848436  2707  280      02000   000000000  05/04/29  P       1      46.00   46.00   46.00  795000083  286
+7418314  4603  480      02400   000000000  05/02/27  P       1      32.00   32.00   32.00  570800062  084
+
+    
