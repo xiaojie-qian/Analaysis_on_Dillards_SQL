@@ -1,16 +1,19 @@
 # Database: ua_dillards
 
-# Tables (5 tables)
+# Tables (6 tables)
    Table     Abbr.                    PK/FK
 1. STRINFO    st                store(char)
 2. DEPTINFO   d       dept(int)
 3. SKSTINFO   sks               store(int)   sku(int)  
 4. SKUINFO    sku     dept(int)              sku(int)
 5. TRNSACT    t                 store(int)   sku(int)   register  trannum
+6. store_msa  s
 
 # Notes: 
 1. sks: cost can be 0 
-2. sampling the prices: sprice = amt , retail can be smaller than cost 
+2. amt means revenue 
+3. stype = 'P' - purchase; stype ='R' -return
+4. sampling the prices: sprice = amt , retail can be smaller than cost 
 cost       retail        orgprice     sprice     amt
 2.10        6.00            6.50        5.00    5.00
 5.00        3.75            15.00       12.75   12.75
@@ -30,9 +33,6 @@ zip    char
 store       city                  state     zip
 5502        WEST PALM BEACH         FL      33401
 7404        NEWPORT NEWS            VA      23602
-200         VALDOSTA                GA      31601
-3402        GAINESVILLE             FL      32605
-4903        MOLINE                  IL      61265
 
 
 ## Table_2: DEPTINFO
@@ -43,10 +43,6 @@ deptdesc  char
 dept   deptdesc
 5207H  SIERR
 1301   BE2
-1100   GARY F
-5102   P&Y
-3103   COP
-
 
 ## Table_3: SKSTINFO
 sku     int      PK    not null
@@ -59,8 +55,6 @@ sku            store       cost          retail
 9609549        7104        20.15         54.00
 4327541        103          0.00         0.00
 5427635        8402        21.00         22.50
-4284277        2707        25.00         24.75
-5858426        9103        38.71         14.99
 
 
 ## Table_4: SKUINFO
@@ -107,4 +101,23 @@ sku     store register trannum   interID   saledate stype quantity orgprice spri
 8848436  2707  280      02000   000000000  05/04/29  P       1      46.00   46.00   46.00  795000083  286
 7418314  4603  480      02400   000000000  05/02/27  P       1      32.00   32.00   32.00  570800062  084
 
-    
+## Table 6 store_msa 
+store                   int             PK
+city                    CHAR(20)
+state                   CHAR(2)
+zip                     CHAR(5)
+msa                     int
+msa_name                CHAR(40)
+msa_pop                 int
+census_region           CHAR(30)
+latitude                float
+longitude               float
+msa_income              int
+msa_high                decimal(3,1)
+msa_bach                decimal(3,1)
+
+Sample 
+store  city         state   zip      msa            msa_name                       msa_pop    census_region  latitude   longitude   msa_income  msa_high  msa_bach
+102    TAMPA        FL      33607    8280   TAMPA-ST. PETERSBURG-CLEARWATER, FL    2723949    SOUTH          27.96      82.53       39052        76.40      25.3   
+6104   CHARLESTON   SC      29407    1440   CHARLESTON-NORTH CHARLESTON, SC        630100     SOUTH          32.79      80.01       30514        65.80      11.9
+4603   CORALVILLE   IA      52241    3500   IOWA CITY, IA                          147038     MIDWEST        41.69      91.59       33971        83.80      29.90
