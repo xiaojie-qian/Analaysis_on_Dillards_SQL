@@ -1,16 +1,16 @@
 # Project description
-1. The Project is about a real business about Dillards. Dillards is an online retail company: https://www.dillards.com/
-2. The dataset is from 2004/8 to 2005/8 
-3. Six tables are listed in database_information document 
-4. Total 47 questions to dive deep into the dataset. 
+1. The Project is about an online fashion company - Dillards. https://www.dillards.com/).
+2. The dataset is from 2004/8 to 2005/8 -one year 
+3. Six tables are documented in database_information
+4. Total 47 SQL queries to dive deep into the dataset documented in SQL file. 
 
 # Schwerpunkte
-1. Understand the meaning of variables: dependent and independent 
-2. Understand to use different metrics to analyze the data 
+1. Understand the meaning of variables: dependent and independent and able to crack the data
+2. Understand to use different business metrics to analyze the data 
 3. The dataset is messy and I need to use the statistical method wisely and exclude the bias dataset
-4. I am familar with advanced query skills, such as complicated subquery, CTE, window_function etc. 
+4. Be familar with advanced query skills, such as complicated subquery, CTE, window_function etc. 
 5. Understand how to validate the query 
-6: Always ask question 
+6: Always ask question
 
 
 ![Dillards](https://user-images.githubusercontent.com/58776067/170771742-2159092d-44ab-42ff-a6e2-77e076f3c635.jpg)
