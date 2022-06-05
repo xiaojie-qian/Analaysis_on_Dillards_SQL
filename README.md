@@ -1,3 +1,4 @@
+👚 SQL practice
 # Project description
 1. The Project is about an online fashion company - Dillards. https://www.dillards.com/).
 2. The dataset is from 2004/8 to 2005/8 -one year 
